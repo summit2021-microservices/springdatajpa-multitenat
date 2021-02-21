@@ -1,6 +1,7 @@
 package com.jornadacolaborativa.microservice.configuration;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,8 +86,23 @@ public class MultitenantConfiguration {
         // Call this to finalize the initialization of the data source.
         dataSource.afterPropertiesSet();
 
+        // startAllDataSource(dataSource);
+
         return dataSource;
     }
+
+    private void startAllDataSource(MultitenantDataSource dataSource) {
+        MultitenantConfiguration.getArrayTenantId().forEach(tenantId -> {
+            TenantContext.setCurrentTenant(tenantId);
+            try {
+                dataSource.getConnection();
+                log.info("startAllDataSource: " + tenantId);
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            });
+    }    
 
     /**
      * Creates the default data source for the application
