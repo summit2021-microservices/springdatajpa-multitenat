@@ -30,23 +30,6 @@ docker run --name oracle-xe-02 -d -p 1522:1521 -p 8081:8080 enomoto/oracle-xe-11
 •	https://chocolatey.org/</br>
 •	https://chocolatey.org/packages/maven</br>
 
-## Instalar O SQL Developer e fazer o teste de conexão com o Oracle database XE 11G que esta sendo executado no container Docker.
-* `hostname: localhost`
-* `port: 1521`
-* `sid: xe`
-* `username: system`
-* `password: oracle`
-
-## Criar 2 usuários no Oracle Database
-```
-CREATE USER tenant1 IDENTIFIED BY 123456;
-GRANT CONNECT,RESOURCE,DBA TO tenant1;
-GRANT UNLIMITED TABLESPACE TO tenant1;
-
-CREATE USER tenant2 IDENTIFIED BY 123456;
-GRANT CONNECT,RESOURCE,DBA TO tenant2;
-GRANT UNLIMITED TABLESPACE TO tenant2;
-```
 
 ## Lombok
 ```
